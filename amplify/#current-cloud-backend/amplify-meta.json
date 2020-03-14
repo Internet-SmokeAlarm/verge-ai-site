@@ -1,22 +1,38 @@
 {
-    "providers": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-vergeai-prod-101415-authRole",
-            "UnauthRoleArn": "arn:aws:iam::259488144092:role/amplify-vergeai-prod-101415-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::259488144092:role/amplify-vergeai-prod-101415-authRole",
-            "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-vergeai-prod-101415-deployment",
-            "UnauthRoleName": "amplify-vergeai-prod-101415-unauthRole",
-            "StackName": "amplify-vergeai-prod-101415",
-            "StackId": "arn:aws:cloudformation:us-east-1:259488144092:stack/amplify-vergeai-prod-101415/ecf40020-6534-11ea-9956-0a1f955da693",
-            "AmplifyAppId": "dd59661986oa8"
-        }
-    },
-    "hosting": {
-        "amplifyhosting": {
-            "service": "amplifyhosting",
-            "type": "cicd",
-            "lastPushTimeStamp": "2020-03-13T14:18:18.743Z"
-        }
-    }
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "amplify-verge-ai-v3-prod-173616-authRole",
+			"UnauthRoleArn": "arn:aws:iam::259488144092:role/amplify-verge-ai-v3-prod-173616-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::259488144092:role/amplify-verge-ai-v3-prod-173616-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "amplify-verge-ai-v3-prod-173616-deployment",
+			"UnauthRoleName": "amplify-verge-ai-v3-prod-173616-unauthRole",
+			"StackName": "amplify-verge-ai-v3-prod-173616",
+			"StackId": "arn:aws:cloudformation:us-east-1:259488144092:stack/amplify-verge-ai-v3-prod-173616/ad497110-6572-11ea-a58b-0e65f7e0e97d",
+			"AmplifyAppId": "d1x2mwaek89utx"
+		}
+	},
+	"auth": {
+		"vergeaiv3e492d58c": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false,
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-verge-ai-v3-prod-173616-deployment/amplify-cfn-templates/auth/vergeaiv3e492d58c-cloudformation-template.yml",
+				"logicalId": "authvergeaiv3e492d58c"
+			},
+			"lastPushTimeStamp": "2020-03-13T21:47:25.550Z",
+			"output": {
+				"AppClientSecret": "1hqbbaq840qoneqmcebqt52hej6g98171m6mmjh1heto76jtdaio",
+				"UserPoolId": "us-east-1_PMp6sasz8",
+				"AppClientIDWeb": "7o227b795s89oskivtap5tuae",
+				"AppClientID": "5e75rqmvnco8da1qqjnhdi9bsu",
+				"IdentityPoolId": "us-east-1:bf447d86-e3cb-4e05-8553-cbdc385972f1",
+				"IdentityPoolName": "vergeaiv3e492d58c_identitypool_e492d58c__prod",
+				"UserPoolName": "vergeaiv3e492d58c_userpool_e492d58c"
+			},
+			"lastPushDirHash": "87Jv7ljVc0mZmJzK9WnNQqKrPvE="
+		}
+	}
 }
