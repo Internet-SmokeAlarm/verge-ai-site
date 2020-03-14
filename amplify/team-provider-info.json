@@ -17,6 +17,9 @@
                     "appId": "d23pjv5h2c4648",
                     "type": "cicd"
                 }
+            },
+            "auth": {
+                "vergeaisite55d13a39": {}
             }
         }
     }
