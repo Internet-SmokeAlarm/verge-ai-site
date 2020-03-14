@@ -28,4 +28,4 @@ function App() {
   );
 }
 
-export default withAuthenticator(app, true);
+export default withAuthenticator(App, true);
