@@ -1,7 +1,0 @@
-{
-    "prod": {
-        "configLevel": "project",
-        "useProfile": false,
-        "awsConfigFilePath": "/Users/valetolpegin/.amplify/awscloudformation/DgzDaV0UUr"
-    }
-}

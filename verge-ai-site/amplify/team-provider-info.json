@@ -1,0 +1,23 @@
+{
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-verge-ai-site-prod-135857-authRole",
+            "UnauthRoleArn": "arn:aws:iam::259488144092:role/amplify-verge-ai-site-prod-135857-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::259488144092:role/amplify-verge-ai-site-prod-135857-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-verge-ai-site-prod-135857-deployment",
+            "UnauthRoleName": "amplify-verge-ai-site-prod-135857-unauthRole",
+            "StackName": "amplify-verge-ai-site-prod-135857",
+            "StackId": "arn:aws:cloudformation:us-east-1:259488144092:stack/amplify-verge-ai-site-prod-135857/86dc4a10-661d-11ea-a784-0ef4281dfc4d",
+            "AmplifyAppId": "d23pjv5h2c4648"
+        },
+        "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d23pjv5h2c4648",
+                    "type": "cicd"
+                }
+            }
+        }
+    }
+}
