@@ -49,8 +49,8 @@ function NavBar(props) {
   } = props;
   const menuItems = [
     {
-      link: "/",
-      name: "Home",
+      link: "/docs",
+      name: "Docs",
       icon: <HomeIcon className="text-white" />
     },
     {
@@ -68,24 +68,31 @@ function NavBar(props) {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <div>
-            <Typography
-              variant="h4"
-              className={classes.brandText}
-              display="inline"
-              color="primary"
-            >
-              Verge
-            </Typography>
-            <Typography
-              variant="h4"
-              className={classes.brandText}
-              display="inline"
-              color="secondary"
-            >
-              AI
-            </Typography>
-          </div>
+          <Link
+            key="VergeHome"
+            to="/"
+            className={classes.noDecoration}
+            onClick=""
+          >
+            <div>
+              <Typography
+                variant="h4"
+                className={classes.brandText}
+                display="inline"
+                color="primary"
+              >
+                Verge
+              </Typography>
+              <Typography
+                variant="h4"
+                className={classes.brandText}
+                display="inline"
+                color="secondary"
+              >
+                AI
+              </Typography>
+            </div>
+          </Link>
           <div>
             <Hidden mdUp>
               <IconButton
