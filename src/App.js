@@ -1,31 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Amplify from 'aws-amplify';
-import awsconfig from './aws-exports';
-import { withAuthenticator } from 'aws-amplify-react';
+import React, { Fragment, Suspense, lazy } from "react";
+import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import theme from "./theme";
+import GlobalStyles from "./GlobalStyles";
+import * as serviceWorker from "./serviceWorker";
+import Pace from "./shared/components/Pace";
 
-Amplify.configure(awsconfig);
+const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
+
+const LoggedOutComponent = lazy(() => import("./logged_out/components/Main"));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        <GlobalStyles />
+        <Pace color={theme.palette.primary.light} />
+        <Suspense fallback={<Fragment />}>
+          <Switch>
+            <Route path="/c">
+              <LoggedInComponent />
+            </Route>
+            <Route>
+              <LoggedOutComponent />
+            </Route>
+          </Switch>
+        </Suspense>
+      </MuiThemeProvider>
+    </BrowserRouter>
   );
 }
 
-export default withAuthenticator(App, true);
+serviceWorker.register();
+
+export default App;
