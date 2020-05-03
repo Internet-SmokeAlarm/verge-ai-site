@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import HomeIcon from "@material-ui/icons/Home";
+import BuildIcon from "@material-ui/icons/Build";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import BookIcon from "@material-ui/icons/Book";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
@@ -49,17 +50,26 @@ function NavBar(props) {
   } = props;
   const menuItems = [
     {
-      link: "/docs",
+      link: "/getting_started",
+      isExternal: false,
+      name: "Getting Started",
+      icon: <BuildIcon className="text-white" />
+    },
+    {
+      link: "https://internet-smokealarm.github.io/documentation-site",
+      isExternal: true,
       name: "Docs",
       icon: <HomeIcon className="text-white" />
     },
     {
       link: "/blog",
+      isExternal: false,
       name: "Blog",
       icon: <BookIcon className="text-white" />
     },
     {
       name: "Login",
+      isExternal: false,
       onClick: openLoginDialog,
       icon: <LockOpenIcon className="text-white" />
     }
@@ -105,7 +115,7 @@ function NavBar(props) {
             </Hidden>
             <Hidden smDown>
               {menuItems.map(element => {
-                if (element.link) {
+                if (element.link && element.isExternal == false) {
                   return (
                     <Link
                       key={element.name}
@@ -123,6 +133,26 @@ function NavBar(props) {
                     </Link>
                   );
                 }
+
+                if (element.link && element.isExternal == true) {
+                  return (
+                    <a
+                      key={element.name}
+                      href={element.link}
+                      className={classes.noDecoration}
+                      onClick={handleMobileDrawerClose}
+                    >
+                      <Button
+                        color="secondary"
+                        size="large"
+                        classes={{ text: classes.menuButtonText }}
+                      >
+                        {element.name}
+                      </Button>
+                    </a>
+                  );
+                }
+
                 return (
                   <Button
                     color="secondary"
