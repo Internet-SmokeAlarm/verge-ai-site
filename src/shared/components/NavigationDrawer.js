@@ -73,7 +73,7 @@ class NavigationDrawer extends PureComponent {
         </Toolbar>
         <List className={classes.blackList}>
           {menuItems.map(element => {
-            if (element.link) {
+            if (element.link && element.isExternal == false) {
               return (
                 <Link
                   key={element.name}
@@ -103,6 +103,38 @@ class NavigationDrawer extends PureComponent {
                 </Link>
               );
             }
+
+            if (element.link && element.isExternal == true) {
+              return (
+                <a
+                  key={element.name}
+                  href={element.link}
+                  className={classes.noDecoration}
+                  onClick={onClose}
+                >
+                  <ListItem
+                    button
+                    selected={selectedItem === element.name}
+                    /**
+                     * We disable ripple as it will make a weird animation
+                     * with primary and secondary color
+                     */
+                    disableRipple
+                    disableTouchRipple
+                  >
+                    <ListItemIcon>{element.icon}</ListItemIcon>
+                    <ListItemText
+                      primary={
+                        <Typography variant="subtitle1" className="text-white">
+                          {element.name}
+                        </Typography>
+                      }
+                    />
+                  </ListItem>
+                </a>
+              );
+            }
+
             return (
               <ListItem button key={element.name} onClick={element.onClick}>
                 <ListItemIcon>{element.icon}</ListItemIcon>
