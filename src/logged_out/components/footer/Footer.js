@@ -13,7 +13,6 @@ import {
 } from "@material-ui/core";
 import PhoneIcon from "@material-ui/icons/Phone";
 import MailIcon from "@material-ui/icons/Mail";
-import WaveBorder from "../../../shared/components/WaveBorder";
 import transitions from "@material-ui/core/styles/transitions";
 import ColoredButton from "../../../shared/components/ColoredButton";
 
@@ -105,11 +104,6 @@ function Footer(props) {
   const { classes, theme, width } = props;
   return (
     <footer className="lg-p-top">
-      <WaveBorder
-        upperColor="#FFFFFF"
-        lowerColor={theme.palette.common.darkBlack}
-        animationNegativeDelay={4}
-      />
       <div className={classes.footerInner}>
         <Grid container spacing={isWidthUp("md", width) ? 10 : 5}>
           <Grid item xs={12} md={6} lg={4}>

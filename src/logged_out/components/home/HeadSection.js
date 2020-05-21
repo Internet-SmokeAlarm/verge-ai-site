@@ -8,7 +8,34 @@ import {
   withWidth,
   isWidthUp
 } from "@material-ui/core";
-import WaveBorder from "../../../shared/components/WaveBorder";
+import Image from "../../imgs/Union.png";
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Icon from '@material-ui/core/Icon';
+import Button from '@material-ui/core/Button';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+
+const CssTextField = withStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: 'white',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'blue',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white',
+      },
+      '&:hover fieldset': {
+        borderColor: 'white',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'white',
+      },
+    },
+  },
+})(TextField);
 
 const styles = theme => ({
   extraLargeButtonLabel: {
@@ -34,12 +61,19 @@ const styles = theme => ({
     color: theme.palette.common.white
   },
   subtitleText: {
-    color: theme.palette.common.grey
+    color: theme.palette.common.white
   },
   wrapper: {
     position: "relative",
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.background.default,
     paddingBottom: theme.spacing(2)
+  },
+  backgroundImageWrapper: {
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "right",
+      [theme.breakpoints.up("lg")]: {
+        backgroundImage: `url(${Image})`,
+      }
   },
   image: {
     maxWidth: "100%",
@@ -48,16 +82,16 @@ const styles = theme => ({
     boxShadow: theme.shadows[4]
   },
   container: {
-    marginTop: theme.spacing(6),
-    marginBottom: theme.spacing(33),
+    marginTop: 0,
+    marginBottom: theme.spacing(22),
     [theme.breakpoints.down("md")]: {
-      marginBottom: theme.spacing(27)
+      marginBottom: theme.spacing(16)
     },
     [theme.breakpoints.down("sm")]: {
-      marginBottom: theme.spacing(21)
+      marginBottom: theme.spacing(10)
     },
     [theme.breakpoints.down("sm")]: {
-      marginBottom: theme.spacing(15)
+      marginBottom: theme.spacing(4)
     }
   },
   containerFix: {
@@ -65,73 +99,91 @@ const styles = theme => ({
       maxWidth: "none !important"
     }
   },
-  waveBorder: {
-    paddingTop: theme.spacing(3),
-  },
   titleContainer: {
-    backgroundColor: theme.palette.secondary.main,
     marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up("xs")]: {
-      paddingTop: theme.spacing(3),
-      paddingBottom: theme.spacing(3)
-    },
-    [theme.breakpoints.up("sm")]: {
-      paddingTop: theme.spacing(5),
-      paddingBottom: theme.spacing(5),
-      paddingLeft: theme.spacing(4),
-      paddingRight: theme.spacing(4)
-    },
-    [theme.breakpoints.up("md")]: {
-      paddingTop: theme.spacing(5.5),
-      paddingBottom: theme.spacing(5.5),
-      paddingLeft: theme.spacing(5),
-      paddingRight: theme.spacing(5)
-    },
-    [theme.breakpoints.up("lg")]: {
-      paddingTop: theme.spacing(6),
-      paddingBottom: theme.spacing(6),
-      paddingLeft: theme.spacing(6),
-      paddingRight: theme.spacing(6)
-    },
-    [theme.breakpoints.down("lg")]: {
-      width: "auto"
-    }
+    marginRight: theme.spacing(2)
   },
+  stayConnectedButton: {
+      background: 'linear-gradient(45deg, #36B4E9 30%, #36B59D 90%)'
+  },
+  stayConnectedEntry: {
+      marginLeft: theme.spacing(2),
+      marginRight: theme.spacing(2),
+      color: theme.palette.common.white
+  },
+  whiteColor: {
+      color: theme.palette.common.white
+  }
 });
 
 function HeadSection(props) {
   const { classes, theme, width } = props;
   return (
     <Fragment>
-      <div className={classNames("lg-p-top", classes.wrapper)}>
+      <div className={classNames("lg-p-top", classes.wrapper, classes.backgroundImageWrapper)}>
         <div className={classNames("container-fluid", classes.container)}>
           <Box display="flex" justifyContent="left" className="row">
             <div
                 className={classes.titleContainer}
             >
-                <Typography
-                    variant={isWidthUp("lg", width) ? "h2" : "h3"}
-                    className={classes.titleText}
-                >
-                  Enterprise-Grade Federated Learning
-                </Typography>
-                <Typography
-                    variant={isWidthUp("lg", width) ? "h3" : "h4"}
-                    className={classes.subtitleText}
-                >
-                  The first serverless, edge-optimized Federated Learning system
-                </Typography>
+                <Box width="75%">
+                    <Typography
+                        variant={isWidthUp("lg", width) ? "h2" : "h3"}
+                        className={classes.titleText}
+                    >
+                      Leverage the power of machine learning at the edge
+                    </Typography>
+                </Box>
+            </div>
+
+            <Box pt={6} />
+
+            <div
+                className={classes.titleContainer}
+            >
+                <Box width="60%">
+                    <Typography
+                        variant={isWidthUp("lg", width) ? "h4" : "h5"}
+                        className={classes.subtitleText}
+                    >
+                      Verge AI is the first edge-optimized, fully managed Federated Learning system. Sign up below to join our beta and receive updates.
+                    </Typography>
+                </Box>
+            </div>
+
+            <div
+                className={classes.titleContainer}
+                mt={6}
+            >
+                <form>
+                    <Box className="row" mt={5}>
+                        <CssTextField
+                            id="standard-basic"
+                            label="Email Address"
+                            variant="outlined"
+                            className={classes.stayConnectedEntry}
+                            InputLabelProps={{ className: classes.whiteColor }}
+                            InputProps={{ className: classes.whiteColor }}
+                        />
+
+                        <div mr={3} />
+
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="secondary"
+                            size="large"
+                            endIcon={<ArrowForwardIcon />}
+                            className={classes.stayConnectedButton}
+                        >
+                            Stay Connected
+                        </Button>
+                    </Box>
+                </form>
             </div>
           </Box>
         </div>
       </div>
-      <WaveBorder
-        upperColor={theme.palette.secondary.main}
-        lowerColor="#FFFFFF"
-        className={classes.waveBorder}
-        animationNegativeDelay={2}
-      />
     </Fragment>
   );
 }

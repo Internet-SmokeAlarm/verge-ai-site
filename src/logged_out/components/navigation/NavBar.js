@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import CardMedia from '@material-ui/core/CardMedia';
+import Card from '@material-ui/core/Card';
 import {
   AppBar,
   Toolbar,
@@ -16,11 +18,12 @@ import BuildIcon from "@material-ui/icons/Build";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import BookIcon from "@material-ui/icons/Book";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
+import Image from "../../imgs/logo.png";
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
   appBar: {
-    boxShadow: theme.shadows[6],
-    backgroundColor: theme.palette.common.white
+    backgroundColor: theme.palette.background.default
   },
   toolbar: {
     display: "flex",
@@ -28,15 +31,22 @@ const styles = theme => ({
   },
   menuButtonText: {
     fontSize: theme.typography.body1.fontSize,
-    fontWeight: theme.typography.h6.fontWeight
+    fontWeight: theme.typography.h6.fontWeight,
+    color: theme.palette.common.white
   },
   brandText: {
     fontFamily: "'Roboto'",
-    fontWeight: 800
+    fontWeight: 800,
+    color: theme.palette.common.white
   },
   noDecoration: {
     textDecoration: "none !important"
-  }
+  },
+  cover: {
+    width: "20%",
+    height: "20%",
+    marginRight: theme.spacing(2)
+  },
 });
 
 function NavBar(props) {
@@ -50,22 +60,10 @@ function NavBar(props) {
   } = props;
   const menuItems = [
     {
-      link: "/getting_started",
-      isExternal: false,
-      name: "Getting Started",
-      icon: <BuildIcon className="text-white" />
-    },
-    {
-      link: "https://internet-smokealarm.github.io/documentation-site",
+      link: "https://internet-smokealarm.github.io/documentation",
       isExternal: true,
       name: "Docs",
       icon: <HomeIcon className="text-white" />
-    },
-    {
-      link: "/blog",
-      isExternal: false,
-      name: "Blog",
-      icon: <BookIcon className="text-white" />
     },
     {
       name: "Login",
@@ -76,34 +74,41 @@ function NavBar(props) {
   ];
   return (
     <div className={classes.root}>
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="relative" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <Link
-            key="VergeHome"
-            to="/"
-            className={classes.noDecoration}
-            onClick=""
-          >
-            <div>
-              <Typography
-                variant="h4"
-                className={classes.brandText}
-                display="inline"
-                color="primary"
-              >
-                Verge
-              </Typography>
-              <Typography
-                variant="h4"
-                className={classes.brandText}
-                display="inline"
-                color="secondary"
-              >
-                AI
-              </Typography>
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+            }}>
+                <CardMedia
+                    component="img"
+                    className={classes.cover}
+                    src={Image}
+                />
+
+                <Link
+                  key="VergeHome"
+                  to="/"
+                  className={classes.noDecoration}
+                  onClick=""
+                >
+                    <Typography
+                        variant="h4"
+                        className={classes.brandText}
+                        display="inline"
+                    >
+                        Verge
+                    </Typography>
+                    <Typography
+                        variant="h4"
+                        className={classes.brandText}
+                        display="inline"
+                     >
+                        AI
+                     </Typography>
+                </Link>
             </div>
-          </Link>
-          <div>
+            <div>
             <Hidden mdUp>
               <IconButton
                 className={classes.menuButton}
