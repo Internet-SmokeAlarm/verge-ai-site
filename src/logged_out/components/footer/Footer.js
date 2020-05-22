@@ -74,13 +74,6 @@ const styles = theme => ({
   }
 });
 
-const infos = [
-  {
-    icon: <MailIcon />,
-    description: "support@verge.ai"
-  }
-];
-
 const socialIcons = [
   {
     icon: (
@@ -106,74 +99,19 @@ function Footer(props) {
     <footer className="lg-p-top">
       <div className={classes.footerInner}>
         <Grid container spacing={isWidthUp("md", width) ? 10 : 5}>
-          <Grid item xs={12} md={6} lg={4}>
-            <form>
-              <Box display="flex" flexDirection="column">
-                <Box mb={1}>
-                  <TextField
-                    variant="outlined"
-                    multiline
-                    placeholder="Get in touch with us"
-                    inputProps={{ "aria-label": "Get in Touch" }}
-                    InputProps={{
-                      className: classes.whiteBg
-                    }}
-                    rows={4}
-                    fullWidth
-                    required
-                  />
-                </Box>
-                <ColoredButton
-                  color={theme.palette.common.white}
-                  variant="outlined"
-                  type="submit"
-                >
-                  Send Message
-                </ColoredButton>
-              </Box>
-            </form>
-          </Grid>
-          <Hidden mdDown>
-            <Grid item xs={12} md={6} lg={4}>
-              <Box display="flex" justifyContent="center">
-                <div>
-                  {infos.map((info, index) => (
-                    <Box display="flex" mb={1} key={index}>
-                      <Box mr={2}>
-                        <IconButton
-                          className={classes.infoIcon}
-                          tabIndex={-1}
-                          disabled
-                        >
-                          {info.icon}
-                        </IconButton>
-                      </Box>
-                      <Box
-                        display="flex"
-                        flexDirection="column"
-                        justifyContent="center"
-                      >
-                        <Typography variant="h6" className="text-white">
-                          {info.description}
-                        </Typography>
-                      </Box>
-                    </Box>
-                  ))}
-                </div>
-              </Box>
-            </Grid>
-          </Hidden>
-          <Grid item xs={12} md={6} lg={4}>
+          <Grid item xs={12} md={8} lg={5}>
             <Typography variant="h6" paragraph className="text-white">
-              About the Company
+              About Verge AI
             </Typography>
             <Typography style={{ color: "#8f9296" }} paragraph>
-              Verge.AI is an early-stage startup building technology for
-              equitable and effective distributed machine learning technologies.
+              We are an early-stage startup building distributed
+              machine learning technologies for all.
             </Typography>
-            <Box display="flex">
+          </Grid>
+          <Grid item xs={12} md={4} lg={7}>
+            <Box vertical-align="middle">
               {socialIcons.map((socialIcon, index) => (
-                <Box key={index} mr={index !== socialIcons.length - 1 ? 1 : 0}>
+                <Box key={index} align="right" vertical-align="middle">
                   <IconButton
                     aria-label={socialIcon.label}
                     className={classes.socialIcon}
