@@ -53,7 +53,7 @@ class NavigationDrawer extends PureComponent {
       theme
     } = this.props;
     return (
-      <Drawer variant="temporary" open={open} onClose={onClose} anchor={anchor}>
+      <Drawer variant="temporary" open={open} onClose={onClose} anchor={anchor} styles={{ backgroundColor: "white !important" }}>
         <Toolbar className={classes.headSection}>
           <ListItem
             style={{
@@ -66,7 +66,7 @@ class NavigationDrawer extends PureComponent {
           >
             <ListItemIcon className={classes.closeIcon}>
               <IconButton onClick={onClose} aria-label="Close Navigation">
-                <CloseIcon color="primary" />
+                <CloseIcon/>
               </IconButton>
             </ListItemIcon>
           </ListItem>

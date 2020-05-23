@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import PriceCard from "./PriceCard";
 import calculateSpacing from "./calculateSpacing";
+import Box from '@material-ui/core/box';
 
 const styles = theme => ({
   containerFix: {
@@ -48,38 +49,41 @@ const styles = theme => ({
 function PricingSection(props) {
   const { width, classes } = props;
   return (
-    <div className="lg-p-top" style={{ backgroundColor: "#FFFFFF" }}>
-      <Typography variant="h3" align="center" className="">
-        Pricing
-      </Typography>
-      <Typography variant="h4" align="center" className="lg-mg-bottom">
-        Pay-as-you-go, so you only pay for resources you use.
-      </Typography>
-      <div className={classNames("container-fluid", classes.containerFix)}>
-        <Grid
-          container
-          spacing={calculateSpacing(width)}
-          className={classes.gridContainer}
-        >
-          <Grid
-            item
-            xs={16}
-            sm={8}
-            lg={4}
-            className={classes.cardWrapper}
-            data-aos="zoom-in-up"
-          >
-            <PriceCard
-              title="Model Upload Requests"
-              pricing={
-                <span>
-                  $0.005
-                  <Typography display="inline"> / upload, download request</Typography>
-                </span>
-              }
-              features={[]}
-            />
-          </Grid>
+    <div style={{ backgroundColor: "#FFFFFF" }}>
+        <Box mt={20} />
+
+        <Typography variant="h3" align="center" className="">
+            Pay as you go pricing
+        </Typography>
+
+        <Box mb={5} />
+
+        <div className={classNames("container-fluid", classes.containerFix)}>
+            <Grid
+                container
+                spacing={calculateSpacing(width)}
+                className={classes.gridContainer}
+            >
+            <Grid
+                item
+                xs={16}
+                sm={8}
+                lg={4}
+                className={classes.cardWrapper}
+                data-aos="zoom-in-up"
+            >
+                <PriceCard
+                    title="Model Upload Requests"
+                    pricing={
+                        <span>
+                        $0.005
+                        <Typography display="inline"> / request</Typography>
+                        </span>
+                    }
+                    features={[]}
+                />
+            </Grid>
+
           <Grid
             item
             className={classes.cardWrapper}
@@ -94,7 +98,7 @@ function PricingSection(props) {
               pricing={
                 <span>
                   $2.00
-                  <Typography display="inline"> / GB-month of models stored</Typography>
+                  <Typography display="inline"> / GB per month</Typography>
                 </span>
               }
               features={[]}
@@ -114,7 +118,7 @@ function PricingSection(props) {
               pricing={
                 <span>
                   $5.00
-                  <Typography display="inline"> / GB of model upload or download</Typography>
+                  <Typography display="inline"> / GB</Typography>
                 </span>
               }
               features={[]}

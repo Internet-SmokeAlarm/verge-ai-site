@@ -146,7 +146,7 @@ function HeadSection(props) {
                         variant={isWidthUp("lg", width) ? "h4" : "h5"}
                         className={classes.subtitleText}
                     >
-                      Verge AI is the first edge-optimized, fully managed Federated Learning system. Sign up below to join our beta and receive updates.
+                      Verge AI is the first open, fully managed Federated Learning system. Sign up below to join our beta and receive updates.
                     </Typography>
                 </Box>
             </div>
