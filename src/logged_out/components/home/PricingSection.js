@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import PriceCard from "./PriceCard";
 import calculateSpacing from "./calculateSpacing";
-import Box from '@material-ui/core/box';
+import Box from '@material-ui/core/Box';
 
 const styles = theme => ({
   containerFix: {
