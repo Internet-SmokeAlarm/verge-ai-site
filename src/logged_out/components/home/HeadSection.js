@@ -166,8 +166,6 @@ function HeadSection(props) {
                             InputProps={{ className: classes.whiteColor }}
                         />
 
-                        <div mr={3} />
-
                         <Button
                             type="submit"
                             variant="contained"
