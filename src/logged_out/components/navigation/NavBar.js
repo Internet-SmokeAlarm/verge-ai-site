@@ -35,7 +35,7 @@ const styles = theme => ({
     color: theme.palette.common.white
   },
   brandText: {
-    fontFamily: "'Roboto'",
+    fontFamily: "'DIN 2014'",
     fontWeight: 800,
     color: theme.palette.common.white
   },
