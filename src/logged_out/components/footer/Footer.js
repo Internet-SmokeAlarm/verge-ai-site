@@ -48,11 +48,11 @@ const styles = theme => ({
   },
   infoIcon: {
     color: `${theme.palette.common.white} !important`,
-    backgroundColor: "#33383b !important"
+    backgroundColor: "#424C62 !important"
   },
   socialIcon: {
     fill: theme.palette.common.white,
-    backgroundColor: "#33383b",
+    backgroundColor: "#313949",
     borderRadius: theme.shape.borderRadius,
     "&:hover": {
       backgroundColor: theme.palette.primary.light
