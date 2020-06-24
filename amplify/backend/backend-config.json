@@ -1,16 +1,1 @@
-{
-	"hosting": {
-		"amplifyhosting": {
-			"service": "amplifyhosting",
-			"type": "cicd"
-		}
-	},
-	"auth": {
-		"vergeaisite55d13a39": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": [],
-			"customAuth": false
-		}
-	}
-}
+{}

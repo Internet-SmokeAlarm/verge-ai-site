@@ -22,8 +22,8 @@ const features = [
     headline: "Scalability",
     text:
       "Tackle challenges of the greatest size and complexity.",
-   icon: <BuildIcon style={{ fontSize: iconSize }} />,
-    // icon: <Icon name="layers" />,
+    // icon: <BuildIcon style={{ fontSize: iconSize }} />,
+    icon: <Icon name="layers" />,
     mdDelay: "0",
     smDelay: "0"
   },
