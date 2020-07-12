@@ -49,7 +49,7 @@ class Main extends PureComponent {
     this.setState({ selectedTab: "Blog" });
   };
 
-  openLoginDialog = () => {
+  openSigninDialog = () => {
     this.setState({ dialogOpen: "login", mobileDrawerOpen: false });
   };
 
@@ -132,7 +132,7 @@ class Main extends PureComponent {
           />
         )}
         <DialogSelector
-          openLoginDialog={this.openLoginDialog}
+          openSigninDialog={this.openSigninDialog}
           dialogOpen={dialogOpen}
           onClose={this.closeDialog}
           openTermsDialog={this.openTermsDialog}
@@ -146,7 +146,7 @@ class Main extends PureComponent {
         <NavBar
           selectedTab={selectedTab}
           selectTab={this.selectTab}
-          openLoginDialog={this.openLoginDialog}
+          openSigninDialog={this.openSigninDialog}
           openRegisterDialog={this.openRegisterDialog}
           mobileDrawerOpen={mobileDrawerOpen}
           handleMobileDrawerOpen={this.handleMobileDrawerOpen}

@@ -52,7 +52,7 @@ const styles = theme => ({
 function NavBar(props) {
   const {
     classes,
-    openLoginDialog,
+    openSigninDialog,
     handleMobileDrawerOpen,
     handleMobileDrawerClose,
     mobileDrawerOpen,
@@ -66,9 +66,9 @@ function NavBar(props) {
       icon: <HomeIcon className="text-white" />
     },
     {
-      name: "Login",
+      name: "Sign in",
       isExternal: false,
-      onClick: openLoginDialog,
+      onClick: openSigninDialog,
       icon: <LockOpenIcon className="text-white" />
     }
   ];
@@ -192,7 +192,7 @@ NavBar.propTypes = {
   mobileDrawerOpen: PropTypes.bool,
   selectedTab: PropTypes.string,
   openRegisterDialog: PropTypes.func.isRequired,
-  openLoginDialog: PropTypes.func.isRequired
+  openSigninDialog: PropTypes.func.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(NavBar);

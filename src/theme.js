@@ -124,7 +124,13 @@ const theme = createMuiTheme({
     }
   },
   typography: {
-    useNextVariants: true
+    fontFamily: [
+      '"din-2014"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+    ].join(','),
   }
 });
 

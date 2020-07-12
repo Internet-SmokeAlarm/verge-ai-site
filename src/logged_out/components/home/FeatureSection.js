@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Typography, isWidthUp, withWidth } from "@material-ui/core";
-// import Icon from 'react-native-ionicons'
 import CodeIcon from "@material-ui/icons/Code";
 import BuildIcon from "@material-ui/icons/Build";
 import ComputerIcon from "@material-ui/icons/Computer";
@@ -22,8 +21,7 @@ const features = [
     headline: "Scalability",
     text:
       "Tackle challenges of the greatest size and complexity.",
-    // icon: <BuildIcon style={{ fontSize: iconSize }} />,
-    icon: <Icon name="layers" />,
+    icon: <BuildIcon style={{ fontSize: iconSize }} />,
     mdDelay: "0",
     smDelay: "0"
   },
