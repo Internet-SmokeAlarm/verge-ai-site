@@ -58,7 +58,8 @@ const styles = theme => ({
   },
   titleText: {
     fontWeight: 500,
-    color: theme.palette.common.white
+    color: theme.palette.common.white,
+    marginBottom: theme.spacing(2),
   },
   subtitleText: {
     color: theme.palette.common.white
