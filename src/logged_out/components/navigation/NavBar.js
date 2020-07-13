@@ -36,16 +36,16 @@ const styles = theme => ({
   },
   brandText: {
     fontFamily: "'DIN 2014'",
-    fontWeight: 800,
+    fontWeight: 400,
     color: theme.palette.common.white
   },
   noDecoration: {
     textDecoration: "none !important"
   },
   cover: {
-    width: "20%",
-    height: "20%",
-    marginRight: theme.spacing(2)
+    width: "12%",
+    height: "12%",
+    marginRight: theme.spacing(1)
   },
 });
 
@@ -93,19 +93,12 @@ function NavBar(props) {
                   onClick=""
                 >
                     <Typography
-                        variant="h4"
+                        variant="h5"
                         className={classes.brandText}
                         display="inline"
                     >
-                        Verge
+                        Verge AI 
                     </Typography>
-                    <Typography
-                        variant="h4"
-                        className={classes.brandText}
-                        display="inline"
-                     >
-                        AI
-                     </Typography>
                 </Link>
             </div>
             <div>
@@ -115,7 +108,7 @@ function NavBar(props) {
                 onClick={handleMobileDrawerOpen}
                 aria-label="Open Navigation"
               >
-                <MenuIcon color="primary" />
+                <MenuIcon color='white' />
               </IconButton>
             </Hidden>
             <Hidden smDown>

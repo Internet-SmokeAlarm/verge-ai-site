@@ -10,7 +10,7 @@ const styles = theme => ({
     paddingLeft: theme.spacing(4),
     paddingRight: theme.spacing(4),
     marginTop: theme.spacing(2),
-    border: `3px solid #36B59D`,
+    border: `2px solid #36B59D`,
     borderRadius: theme.shape.borderRadius * 2
   },
   cardHightlighted: {

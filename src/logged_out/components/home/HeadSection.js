@@ -76,7 +76,7 @@ const styles = theme => ({
       }
   },
   image: {
-    maxWidth: "100%",
+    maxWidth: "80%",
     verticalAlign: "middle",
     borderRadius: theme.shape.borderRadius,
     boxShadow: theme.shadows[4]
@@ -128,7 +128,7 @@ function HeadSection(props) {
             >
                 <Box width="75%">
                     <Typography
-                        variant={isWidthUp("lg", width) ? "h2" : "h3"}
+                        variant={isWidthUp("lg", width) ? "h3" : "h4"}
                         className={classes.titleText}
                     >
                       Leverage the power of machine learning at the edge
@@ -143,7 +143,7 @@ function HeadSection(props) {
             >
                 <Box width="60%">
                     <Typography
-                        variant={isWidthUp("lg", width) ? "h4" : "h5"}
+                        variant={isWidthUp("lg", width) ? "h5" : "h6"}
                         className={classes.subtitleText}
                     >
                       Verge AI is the first open, fully managed Federated Learning system. Sign up below to join our beta and receive updates.

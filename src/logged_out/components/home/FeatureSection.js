@@ -2,55 +2,47 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Typography, isWidthUp, withWidth } from "@material-ui/core";
 import CodeIcon from "@material-ui/icons/Code";
+import LayersIcon from "@material-ui/icons/Layers";
 import BuildIcon from "@material-ui/icons/Build";
-import ComputerIcon from "@material-ui/icons/Computer";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import HeadsetMicIcon from "@material-ui/icons/HeadsetMic";
-import OpenIcon from "@material-ui/icons/OpenWith";
+import TuneIcon from "@material-ui/icons/Tune";
 import CloudIcon from "@material-ui/icons/Cloud";
-import MeassageIcon from "@material-ui/icons/Message";
+import PeopleIcon from "@material-ui/icons/People";
 import CancelIcon from "@material-ui/icons/Cancel";
 import calculateSpacing from "./calculateSpacing";
 import FeatureCard from "./FeatureCard";
 
-const iconSize = 100;
+const iconSize = 60;
 
 const features = [
   {
-    color: "#00C853",
+    color: "#36B59D",
     headline: "Scalability",
     text:
       "Tackle challenges of the greatest size and complexity.",
-    icon: <BuildIcon style={{ fontSize: iconSize }} />,
-    mdDelay: "0",
-    smDelay: "0"
+    icon: <LayersIcon style={{ fontSize: iconSize }} />,
   },
   {
-    color: "#6200EA",
+    color: "#6247EB",
     headline: "Flexibility",
     text:
       "Choose how you want to compose your infrastructure at the edge.",
-    icon: <OpenIcon style={{ fontSize: iconSize }} />,
-    mdDelay: "200",
-    smDelay: "200"
+    icon: <TuneIcon style={{ fontSize: iconSize }} />,
   },
   {
-    color: "#0091EA",
+    color: "#36B4E9",
     headline: "Collaboration",
     text:
       "Build and train together across teams of any size.",
-    icon: <MeassageIcon style={{ fontSize: iconSize }} />,
-    mdDelay: "400",
-    smDelay: "0"
+    icon: <PeopleIcon style={{ fontSize: iconSize }} />,
   },
   {
-    color: "#d50000",
+    color: "#2B54AC",
     headline: "Fully managed",
     text:
       "Robust to failure with leading service up-time.",
-    icon: <ComputerIcon style={{ fontSize: iconSize }} />,
-    mdDelay: "0",
-    smDelay: "200"
+    icon: <BuildIcon style={{ fontSize: iconSize }} />,
   }
 ];
 
