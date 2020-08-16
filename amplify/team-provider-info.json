@@ -1,15 +1,26 @@
 {
-    "elexc": {
+    "dev": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-vergeaisite-elexc-192756-authRole",
-            "UnauthRoleArn": "arn:aws:iam::259488144092:role/amplify-vergeaisite-elexc-192756-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::259488144092:role/amplify-vergeaisite-elexc-192756-authRole",
+            "AuthRoleName": "amplify-vergeaisite-dev-135108-authRole",
+            "UnauthRoleArn": "arn:aws:iam::259488144092:role/amplify-vergeaisite-dev-135108-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::259488144092:role/amplify-vergeaisite-dev-135108-authRole",
             "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-vergeaisite-elexc-192756-deployment",
-            "UnauthRoleName": "amplify-vergeaisite-elexc-192756-unauthRole",
-            "StackName": "amplify-vergeaisite-elexc-192756",
-            "StackId": "arn:aws:cloudformation:us-east-1:259488144092:stack/amplify-vergeaisite-elexc-192756/d7349890-b416-11ea-a17c-0a200f00c284",
-            "AmplifyAppId": "d27z346b0j9uuf"
+            "DeploymentBucketName": "amplify-vergeaisite-dev-135108-deployment",
+            "UnauthRoleName": "amplify-vergeaisite-dev-135108-unauthRole",
+            "StackName": "amplify-vergeaisite-dev-135108",
+            "StackId": "arn:aws:cloudformation:us-east-1:259488144092:stack/amplify-vergeaisite-dev-135108/11bb4100-dfe9-11ea-a396-0e715b49d7c1",
+            "AmplifyAppId": "duk99md56cksw"
+        },
+        "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "duk99md56cksw",
+                    "type": "manual"
+                }
+            },
+            "auth": {
+                "vergeaisite0e733080": {}
+            }
         }
     }
 }

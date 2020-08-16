@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import CardMedia from '@material-ui/core/CardMedia';
-import Card from '@material-ui/core/Card';
 import {
   AppBar,
   Toolbar,
@@ -14,12 +13,9 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import HomeIcon from "@material-ui/icons/Home";
-import BuildIcon from "@material-ui/icons/Build";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
-import BookIcon from "@material-ui/icons/Book";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 import Image from "../../imgs/logo.png";
-import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
   appBar: {
@@ -52,7 +48,6 @@ const styles = theme => ({
 function NavBar(props) {
   const {
     classes,
-    openSigninDialog,
     handleMobileDrawerOpen,
     handleMobileDrawerClose,
     mobileDrawerOpen,
@@ -68,7 +63,7 @@ function NavBar(props) {
     {
       name: "Sign in",
       isExternal: false,
-      onClick: openSigninDialog,
+      link: "/c/dashboard",
       icon: <LockOpenIcon className="text-white" />
     }
   ];
@@ -90,14 +85,13 @@ function NavBar(props) {
                   key="VergeHome"
                   to="/"
                   className={classes.noDecoration}
-                  onClick=""
                 >
                     <Typography
                         variant="h5"
                         className={classes.brandText}
                         display="inline"
                     >
-                        Verge AI 
+                        Verge AI
                     </Typography>
                 </Link>
             </div>
@@ -113,7 +107,7 @@ function NavBar(props) {
             </Hidden>
             <Hidden smDown>
               {menuItems.map(element => {
-                if (element.link && element.isExternal == false) {
+                if (element.link && element.isExternal === false) {
                   return (
                     <Link
                       key={element.name}
@@ -132,7 +126,7 @@ function NavBar(props) {
                   );
                 }
 
-                if (element.link && element.isExternal == true) {
+                if (element.link && element.isExternal === true) {
                   return (
                     <a
                       key={element.name}
@@ -183,9 +177,7 @@ NavBar.propTypes = {
   handleMobileDrawerOpen: PropTypes.func,
   handleMobileDrawerClose: PropTypes.func,
   mobileDrawerOpen: PropTypes.bool,
-  selectedTab: PropTypes.string,
-  openRegisterDialog: PropTypes.func.isRequired,
-  openSigninDialog: PropTypes.func.isRequired
+  selectedTab: PropTypes.string
 };
 
 export default withStyles(styles, { withTheme: true })(NavBar);

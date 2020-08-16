@@ -34,4 +34,4 @@ function App() {
 
 serviceWorker.register();
 
-export default App;
+export default App

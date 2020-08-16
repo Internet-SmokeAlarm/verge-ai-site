@@ -73,7 +73,7 @@ class NavigationDrawer extends PureComponent {
         </Toolbar>
         <List className={classes.blackList}>
           {menuItems.map(element => {
-            if (element.link && element.isExternal == false) {
+            if (element.link && element.isExternal === false) {
               return (
                 <Link
                   key={element.name}
@@ -104,7 +104,7 @@ class NavigationDrawer extends PureComponent {
               );
             }
 
-            if (element.link && element.isExternal == true) {
+            if (element.link && element.isExternal === true) {
               return (
                 <a
                   key={element.name}
