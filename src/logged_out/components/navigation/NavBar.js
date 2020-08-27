@@ -15,11 +15,11 @@ import MenuIcon from "@material-ui/icons/Menu";
 import HomeIcon from "@material-ui/icons/Home";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
-import Image from "../../imgs/logo.png";
+import Image from "../../../shared/imgs/logo.png";
 
 const styles = theme => ({
   appBar: {
-    backgroundColor: theme.palette.background.default
+    backgroundColor: theme.palette.common.black
   },
   toolbar: {
     display: "flex",

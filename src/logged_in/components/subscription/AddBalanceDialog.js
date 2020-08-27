@@ -18,7 +18,7 @@ import ButtonCircularProgress from "../../../shared/components/ButtonCircularPro
 
 const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 
-const paymentOptions = ["Credit Card", "SEPA Direct Debit"];
+const paymentOptions = ["Credit Card"];
 
 const AddBalanceDialog = withTheme(function(props) {
   const [loading, setLoading] = useState(false);
@@ -50,13 +50,6 @@ const AddBalanceDialog = withTheme(function(props) {
           billing_details: { name: name }
         };
       }
-      case "SEPA Direct Debit": {
-        return {
-          type: "sepa_debit",
-          sepa_debit: elements.getElement(IbanElement),
-          billing_details: { email: email, name: name }
-        };
-      }
       default:
         throw new Error("No case selected in switch statement");
     }
@@ -81,29 +74,6 @@ const AddBalanceDialog = withTheme(function(props) {
             <HighlightedInformation>
               You can check this integration using the credit card number{" "}
               <b>4242 4242 4242 4242 04 / 24 24 242 42424</b>
-            </HighlightedInformation>
-          </Fragment>
-        );
-      case "SEPA Direct Debit":
-        return (
-          <Fragment>
-            <Box mb={2}>
-              <StripeIbanForm
-                stripeError={stripeError}
-                setStripeError={setStripeError}
-                setName={setName}
-                setEmail={setEmail}
-                name={name}
-                email={email}
-                amount={amount}
-                amountError={amountError}
-                onAmountChange={onAmountChange}
-              />
-            </Box>
-            <HighlightedInformation>
-              You can check this integration using the IBAN
-              <br />
-              <b>DE89370400440532013000</b>
             </HighlightedInformation>
           </Fragment>
         );

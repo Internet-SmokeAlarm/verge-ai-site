@@ -4,14 +4,13 @@ import classNames from "classnames";
 import { withStyles } from "@material-ui/core";
 import Routing from "./Routing";
 import NavBar from "./navigation/NavBar";
-import ConsecutiveSnackbarMessages from "../../shared/components/ConsecutiveSnackbarMessages";
 import smoothScrollTop from "../../shared/functions/smoothScrollTop";
-import persons from "../dummy_data/persons";
 import LazyLoadAddBalanceDialog from "./subscription/LazyLoadAddBalanceDialog";
 import { withAuthenticator } from '@aws-amplify/ui-react';
 
 const styles = theme => ({
   main: {
+    backgroundColor: theme.palette.common.white,
     marginLeft: theme.spacing(9),
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -40,39 +39,15 @@ class Main extends PureComponent {
     DateTimePicker: null,
     transactions: [],
     statistics: { views: [], profit: [] },
-    posts: [],
     targets: [],
-    messages: [],
     isAccountActivated: false,
     addBalanceDialogOpen: false
   };
 
   componentDidMount() {
-    this.fetchRandomTargets();
     this.fetchRandomStatistics();
     this.fetchRandomTransactions();
-    this.fetchRandomMessages();
-    this.fetchRandomPosts();
   }
-
-  fetchRandomTargets = () => {
-    const targets = [];
-    for (let i = 0; i < 35; i += 1) {
-      const randomPerson = persons[Math.floor(Math.random() * persons.length)];
-      const target = {
-        id: i,
-        number1: Math.floor(Math.random() * 251),
-        number2: Math.floor(Math.random() * 251),
-        number3: Math.floor(Math.random() * 251),
-        number4: Math.floor(Math.random() * 251),
-        name: randomPerson.name,
-        profilePicUrl: randomPerson.profilePicUrl,
-        isActivated: Math.round(Math.random()) ? true : false
-      };
-      targets.push(target);
-    }
-    this.setState({ targets });
-  };
 
   openAddBalanceDialog = () => {
     this.setState({ addBalanceDialogOpen: true });
@@ -172,61 +147,6 @@ class Main extends PureComponent {
     this.setState({ transactions });
   };
 
-  fetchRandomMessages = () => {
-    shuffle(persons);
-    const messages = [];
-    const iterations = persons.length;
-    const oneDaySeconds = 60 * 60 * 24;
-    let curUnix = Math.round(
-      new Date().getTime() / 1000 - iterations * oneDaySeconds
-    );
-    for (let i = 0; i < iterations; i += 1) {
-      const person = persons[i];
-      const message = {
-        id: i,
-        profilePicUrl: person.profilePicUrl,
-        date: curUnix,
-        text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr sed."
-      };
-      curUnix += oneDaySeconds;
-      messages.push(message);
-    }
-    messages.reverse();
-    this.setState({ messages });
-  };
-
-  fetchRandomPosts = () => {
-    shuffle(persons);
-    const posts = [];
-    const iterations = persons.length;
-    const oneDaySeconds = 60 * 60 * 24;
-    let curUnix = Math.round(
-      new Date().getTime() / 1000 - iterations * oneDaySeconds
-    );
-    for (let i = 0; i < iterations; i += 1) {
-      const person = persons[i];
-      const post = {
-        id: i,
-        src: person.profilePicUrl,
-        timestamp: curUnix,
-        name: person.name
-      };
-      curUnix += oneDaySeconds;
-      posts.reverse();
-      posts.push(post);
-    }
-    this.setState({ posts });
-  };
-
-  /**
-   * We have to call the pushSnackBarMessage function of this
-   * child's consecutiveSnackbarMessages component. Thats why we pass it
-   * when the component did mount to this components state.
-   */
-  getPushMessageFromChild = pushFunction => {
-    this.pushMessageToSnackbar = pushFunction;
-  };
-
   /** After a click on the 'activate' button in the dashboard
    * the activation status of the account
    */
@@ -258,38 +178,6 @@ class Main extends PureComponent {
     }
   };
 
-  selectPosts = () => {
-    smoothScrollTop();
-    document.title = "WaVer - Posts";
-    this.setState({
-      selectedTab: "Posts"
-    });
-    if (!this.hasFetchedEmojiTextArea) {
-      this.hasFetchedEmojiTextArea = true;
-      import("../../shared/components/EmojiTextArea").then(Component => {
-        this.setState({ EmojiTextArea: Component.default });
-      });
-    }
-    if (!this.hasFetchedImageCropper) {
-      this.hasFetchedImageCropper = true;
-      import("../../shared/components/ImageCropper").then(Component => {
-        this.setState({ ImageCropper: Component.default });
-      });
-    }
-    if (!this.hasFetchedDropzone) {
-      this.hasFetchedDropzone = true;
-      import("../../shared/components/Dropzone").then(Component => {
-        this.setState({ Dropzone: Component.default });
-      });
-    }
-    if (!this.hasFetchedDateTimePicker) {
-      this.hasFetchedDateTimePicker = true;
-      import("../../shared/components/DateTimePicker").then(Component => {
-        this.setState({ DateTimePicker: Component.default });
-      });
-    }
-  };
-
   selectSubscription = () => {
     smoothScrollTop();
     document.title = "WaVer - Subscription";
@@ -309,10 +197,8 @@ class Main extends PureComponent {
       DateTimePicker,
       transactions,
       statistics,
-      posts,
       targets,
       isAccountActivated,
-      messages,
       addBalanceDialogOpen
     } = this.state;
     return (
@@ -324,11 +210,7 @@ class Main extends PureComponent {
         />
         <NavBar
           selectedTab={selectedTab}
-          messages={messages}
           openAddBalanceDialog={this.openAddBalanceDialog}
-        />
-        <ConsecutiveSnackbarMessages
-          getPushMessageFromChild={this.getPushMessageFromChild}
         />
         <main className={classNames(classes.main)}>
           <Routing
@@ -345,10 +227,8 @@ class Main extends PureComponent {
             pushMessageToSnackbar={this.pushMessageToSnackbar}
             transactions={transactions}
             statistics={statistics}
-            posts={posts}
             targets={targets}
             selectDashboard={this.selectDashboard}
-            selectPosts={this.selectPosts}
             selectSubscription={this.selectSubscription}
             openAddBalanceDialog={this.openAddBalanceDialog}
           />

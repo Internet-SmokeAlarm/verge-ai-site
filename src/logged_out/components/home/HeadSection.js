@@ -8,7 +8,7 @@ import {
   withWidth,
   isWidthUp
 } from "@material-ui/core";
-import Image from "../../imgs/Union.png";
+import Image from "../../../shared/imgs/Union.png";
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
