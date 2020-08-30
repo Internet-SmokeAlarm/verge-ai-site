@@ -46,7 +46,7 @@ const theme = createMuiTheme({
             blue6: blue6,
             blue7: blue7
         },
-        primary: { main: primary },
+        primary: { main: blue4 },
         secondary: { main: secondary },
         common: {
             black,

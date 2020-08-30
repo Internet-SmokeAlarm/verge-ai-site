@@ -5,8 +5,6 @@ import { Typography, Box } from "@material-ui/core";
 
 class Dashboard extends PureComponent {
   componentDidMount() {
-    const { selectDashboard } = this.props;
-    selectDashboard();
   }
 
   render() {
@@ -19,9 +17,5 @@ class Dashboard extends PureComponent {
     );
   }
 }
-
-Dashboard.propTypes = {
-  selectDashboard: PropTypes.func.isRequired
-};
 
 export default Dashboard;

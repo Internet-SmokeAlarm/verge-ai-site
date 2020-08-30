@@ -1,28 +1,33 @@
 import React, { Fragment, PureComponent } from "react";
 import PropTypes from "prop-types";
-import { Typography, Box } from "@material-ui/core";
+import { Typography, Box, withStyles } from "@material-ui/core";
+import Profile from './Profile';
+
+const styles = theme => ({
+    wrapper: {
+        position: "relative",
+        backgroundColor: theme.palette.background.default,
+        paddingBottom: theme.spacing(2)
+    }
+});
 
 class Settings extends PureComponent {
     componentDidMount() {
-        const { selectSettings } = this.props;
-
-        console.log("Hello world!!!!!!!!!");
     }
 
     render() {
-        const {
-        } = this.props;
+        const { classes } = this.props;
 
         return (
             <Fragment>
-            Hello world!
+                <Profile />
             </Fragment>
         );
     }
 }
 
 Settings.propTypes = {
-  selectDashboard: PropTypes.func.isRequired
+    classes: PropTypes.object
 };
 
-export default Settings;
+export default withStyles(styles, { withTheme: true })(Settings);
