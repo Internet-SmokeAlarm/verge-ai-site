@@ -2,6 +2,7 @@ import React, { Fragment, PureComponent } from "react";
 import PropTypes from "prop-types";
 import { Typography, Box, withStyles } from "@material-ui/core";
 import Profile from './Profile';
+import ApiKeys from './ApiKeys';
 
 const styles = theme => ({
     wrapper: {
@@ -12,15 +13,13 @@ const styles = theme => ({
 });
 
 class Settings extends PureComponent {
-    componentDidMount() {
-    }
-
     render() {
         const { classes } = this.props;
 
         return (
             <Fragment>
                 <Profile />
+                <ApiKeys />
             </Fragment>
         );
     }

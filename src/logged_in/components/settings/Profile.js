@@ -16,12 +16,15 @@ const styles = theme => ({
         fontStyle: "normal",
         fontWeight: 500,
         fontSize: 18,
-        paddingBottom: 20,
+        paddingBottom: theme.spacing(2),
         textTransform: "uppercase",
         color: "#393A3E"
     },
     textField: {
-        paddingBottom: 20
+        paddingBottom: theme.spacing(2)
+    },
+    wrapper: {
+        paddingBottom: theme.spacing(6)
     }
 });
 
@@ -97,72 +100,74 @@ class Profile extends PureComponent {
     render() {
         return (
             <Fragment>
-                <Dialog
-                    open={this.state.displayVerificationAlertDialog}
-                    onClose={this.handleClose}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                >
-                    <DialogTitle id="alert-dialog-title">{"Please Verify Your New Email"}</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            Enter the verification code sent your new email address.
-                        </DialogContentText>
+                <div className={this.props.classes.wrapper}>
+                    <Dialog
+                        open={this.state.displayVerificationAlertDialog}
+                        onClose={this.handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <DialogTitle id="alert-dialog-title">{"Please Verify Your New Email"}</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                                Enter the verification code sent your new email address.
+                            </DialogContentText>
+
+                            <TextField
+                                id="verification-code"
+                                variant="filled"
+                                label="Verification Code"
+                                className={this.props.classes.textField}
+                                value={this.state.verificationCode}
+                                onChange={this.updateVerificationCode} />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={this.handleClose} color="primary">
+                                Skip
+                            </Button>
+                            <Button onClick={this.handleVerificationSubmit} color="primary">
+                                Agree
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+
+                    <form noValidate autoComplete="off">
+                        <Typography
+                            varient="h1"
+                            className={this.props.classes.profileHeader}
+                        >
+                            Profile
+                        </Typography>
 
                         <TextField
-                            id="verification-code"
+                            id="username"
                             variant="filled"
-                            label="Verification Code"
+                            label="Username"
+                            disabled
                             className={this.props.classes.textField}
-                            value={this.state.verificationCode}
-                            onChange={this.updateVerificationCode} />
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={this.handleClose} color="primary">
-                            Skip
+                            value={this.state.username} />
+
+                        <br />
+
+                        <TextField
+                            id="email"
+                            variant="filled"
+                            label="Email"
+                            className={this.props.classes.textField}
+                            value={this.state.email}
+                            onChange={this.updateUserEmail} />
+
+                        <br />
+
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={this.handleProfileUpdate}
+                        >
+                            Update Profile
                         </Button>
-                        <Button onClick={this.handleVerificationSubmit} color="primary">
-                            Agree
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-
-                <form noValidate autoComplete="off">
-                    <Typography
-                        varient="h1"
-                        className={this.props.classes.profileHeader}
-                    >
-                        Profile
-                    </Typography>
-
-                    <TextField
-                        id="name"
-                        variant="filled"
-                        label="Name"
-                        disabled
-                        className={this.props.classes.textField}
-                        value={this.state.username} />
-
-                    <br />
-
-                    <TextField
-                        id="email"
-                        variant="filled"
-                        label="Email"
-                        className={this.props.classes.textField}
-                        value={this.state.email}
-                        onChange={this.updateUserEmail} />
-
-                    <br />
-
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={this.handleProfileUpdate}
-                    >
-                        Update Profile
-                    </Button>
-                </form>
+                    </form>
+                </div>
             </Fragment>
         );
     }
