@@ -107,6 +107,34 @@ class ApiKeys extends PureComponent {
             });
     }
 
+    handleDeactivate = (event, key) => {
+        let jwt = this.state.user.signInUserSession.accessToken.jwtToken;
+
+        fetch("https://cs1fngyhi8.execute-api.us-east-1.amazonaws.com/dev/v1/auth/delete", {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'omit',
+            headers: {
+                'Authorization': jwt,
+                'Content-Type': 'application/json',
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify({"api_key": key})
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                // after we delete an API key, we want to update the key list.
+                this.loadAPIKeyInformation();
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }
+
     handleGenerateApiKey = (event) => {
         let jwt = this.state.user.signInUserSession.accessToken.jwtToken;
 
@@ -229,7 +257,7 @@ class ApiKeys extends PureComponent {
                                                 <Button
                                                     variant="outlined"
                                                     color="primary"
-                                                    onClick=""
+                                                    onClick={(event) => this.handleDeactivate(event, value)}
                                                 >
                                                     Deactivate
                                                 </Button>
