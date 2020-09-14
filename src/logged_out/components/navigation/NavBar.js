@@ -19,7 +19,9 @@ import Image from "../../../shared/imgs/logo.png";
 
 const styles = theme => ({
   appBar: {
-    backgroundColor: theme.palette.common.black
+    backgroundColor: theme.palette.common.blue1,
+    borderBottomColor: theme.palette.common.white,
+    borderBottomWidth: 4
   },
   toolbar: {
     display: "flex",

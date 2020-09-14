@@ -121,7 +121,7 @@ function HeadSection(props) {
   const { classes, theme, width } = props;
   return (
     <Fragment>
-      <div className={classNames("lg-p-top", classes.wrapper, classes.backgroundImageWrapper)}>
+      <div className={classNames("lg-p-top", classes.wrapper, classes.backgroundImageWrapper)} style={{ backgroundColor: "#05173E" }}>
         <div className={classNames("container-fluid", classes.container)}>
           <Box display="flex" justifyContent="left" className="row">
             <div
