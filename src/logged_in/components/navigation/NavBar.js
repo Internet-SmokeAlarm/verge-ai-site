@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from "react";
+import React, { PureComponent, Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { Auth } from 'aws-amplify';
 import PropTypes from "prop-types";
@@ -17,9 +17,7 @@ import {
     Hidden,
     Tooltip,
     Box,
-    withStyles,
-    isWidthUp,
-    withWidth
+    withStyles
 } from "@material-ui/core";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import Image from "../../../shared/imgs/white_logo.png";
@@ -29,6 +27,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import UserActionsMenu from './UserActionsMenu';
 import ProjectsMenu from './ProjectsMenu';
+import { loadUserFromCache } from '../../../shared/functions/auth';
 
 const styles = theme => ({
     appBar: {
@@ -120,70 +119,57 @@ const styles = theme => ({
     }
 });
 
-class NavBar extends PureComponent {
-    constructor(props) {
-        super(props);
+function NavBar(props) {
+    const [username, setUsername] = useState(null);
 
-        this.state = {
-            username: ""
-        };
-    }
-
-    async getUsername() {
-        let user = await Auth.currentAuthenticatedUser({
-            bypassCache: true
+    loadUserFromCache()
+        .then((data) => {
+            setUsername(data.username);
+        })
+        .catch((e) => {
+            console.log(e);
         });
 
-        this.setState({ username: user.username });
-    };
+    return (
+        <Fragment>
+            <AppBar position="sticky" className={props.classes.appBar}>
+                <Toolbar className={props.classes.appBarToolbar}>
+                    <Box display="flex" alignItems="center">
+                        <Hidden xsDown>
+                            <CardMedia
+                                component="img"
+                                className={props.classes.cover}
+                                src={Image}
+                            />
 
-    componentDidMount() {
-        this.getUsername();
-    }
-
-    render() {
-        return (
-            <Fragment>
-                <AppBar position="sticky" className={this.props.classes.appBar}>
-                    <Toolbar className={this.props.classes.appBarToolbar}>
-                        <Box display="flex" alignItems="center">
-                            <Hidden xsDown>
-                                <CardMedia
-                                    component="img"
-                                    className={this.props.classes.cover}
-                                    src={Image}
-                                />
-
-                                <ProjectsMenu />
-                            </Hidden>
-                        </Box>
-                        <Box
-                            display="flex"
-                            justifyContent="flex-end"
-                            alignItems="center"
-                            width="100%"
+                            <ProjectsMenu />
+                        </Hidden>
+                    </Box>
+                    <Box
+                        display="flex"
+                        justifyContent="flex-end"
+                        alignItems="center"
+                        width="100%"
+                    >
+                        <ListItem
+                            disableGutters
+                            className={classNames(props.classes.iconListItem, props.classes.smBordered)}
                         >
-                            <ListItem
-                                disableGutters
-                                className={classNames(this.props.classes.iconListItem, this.props.classes.smBordered)}
-                            >
-                                <UserActionsMenu
-                                    username={this.state.username}
-                                    userActionsMenu={this.props.classes.menu}
-                                    linkDecoration={this.props.classes.noDecoration}
-                                />
-                            </ListItem>
-                        </Box>
-                    </Toolbar>
-                </AppBar>
-            </Fragment>
-        );
-    }
+                            <UserActionsMenu
+                                username={username}
+                                userActionsMenu={props.classes.menu}
+                                linkDecoration={props.classes.noDecoration}
+                            />
+                        </ListItem>
+                    </Box>
+                </Toolbar>
+            </AppBar>
+        </Fragment>
+    );
 }
 
 NavBar.propTypes = {
-    width: PropTypes.string.isRequired,
     classes: PropTypes.object.isRequired
 };
 
-export default withWidth()(withStyles(styles, { withTheme: true })(NavBar));
+export default withStyles(styles, { withTheme: true })(NavBar);
