@@ -113,6 +113,10 @@ const styles = theme => ({
     noDecoration: {
         textDecoration: "none !important",
         color: theme.palette.common.black
+    },
+    primaryColorDecoration: {
+        textDecoration: "none !important",
+        color: theme.palette.primary
     }
 });
 
@@ -150,10 +154,7 @@ class NavBar extends PureComponent {
                                     src={Image}
                                 />
 
-                                <ProjectsMenu
-                                    projectsMenu={this.props.classes.menu}
-                                    linkDecoration={this.props.classes.noDecoration}
-                                />
+                                <ProjectsMenu />
                             </Hidden>
                         </Box>
                         <Box

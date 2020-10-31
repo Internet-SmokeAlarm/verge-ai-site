@@ -18,6 +18,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import '../../../config.js';
 
 const styles = theme => ({
     apiKeysHeader: {
@@ -84,7 +85,7 @@ class ApiKeys extends PureComponent {
     async loadAPIKeyInformation() {
         let jwt = this.state.user.signInUserSession.accessToken.jwtToken;
 
-        fetch("https://cs1fngyhi8.execute-api.us-east-1.amazonaws.com/dev/v1/user/get", {
+        fetch(`${global.config.api.baseUrl}/user/get`, {
             method: 'GET',
             mode: 'cors',
             cache: 'no-cache',
@@ -110,7 +111,7 @@ class ApiKeys extends PureComponent {
     handleDeactivate = (event, key) => {
         let jwt = this.state.user.signInUserSession.accessToken.jwtToken;
 
-        fetch("https://cs1fngyhi8.execute-api.us-east-1.amazonaws.com/dev/v1/auth/delete", {
+        fetch(`${global.config.api.baseUrl}/auth/delete`, {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
@@ -140,7 +141,7 @@ class ApiKeys extends PureComponent {
 
         this.setState({ keyGenerationInProgress: true });
 
-        fetch("https://cs1fngyhi8.execute-api.us-east-1.amazonaws.com/dev/v1/auth/create", {
+        fetch(`${global.config.api.baseUrl}/auth/create`, {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',

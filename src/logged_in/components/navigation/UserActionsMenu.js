@@ -10,12 +10,6 @@ function UserActionsMenu(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const links = [
         {
-            "key": "Dashboard",
-            "to": "/c/dashboard",
-            "text": "Dashboard",
-            "onClick": null
-        },
-        {
             "key": "Settings",
             "to": "/c/settings",
             "text": "Settings",

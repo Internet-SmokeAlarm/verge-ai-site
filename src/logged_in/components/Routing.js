@@ -2,9 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Switch } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
-import Dashboard from "./dashboard/Dashboard";
 import Settings from "./settings/Settings";
 import PropsRoute from "../../shared/components/PropsRoute";
+import CreateProject from "./create_project/CreateProject";
+import Project from './project/Project';
 
 
 const styles = theme => ({
@@ -51,12 +52,16 @@ function Routing(props) {
         <div className={classes.wrapper}>
             <Switch>
                 <PropsRoute
-                    path="/c/dashboard"
-                    component={Dashboard}
-                />
-                <PropsRoute
                     path="/c/settings"
                     component={Settings}
+                />
+                <PropsRoute
+                    path="/c/new_project"
+                    component={CreateProject}
+                />
+                <PropsRoute
+                    path="/c/projects/:id"
+                    component={Project}
                 />
             </Switch>
         </div>
