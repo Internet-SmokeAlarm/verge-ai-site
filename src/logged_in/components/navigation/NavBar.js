@@ -1,5 +1,5 @@
-import React, { PureComponent, Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment, useState, useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { Auth } from 'aws-amplify';
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -27,7 +27,17 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import UserActionsMenu from './UserActionsMenu';
 import ProjectsMenu from './ProjectsMenu';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import { SelectedProjectContext, TabContext } from '../Contexts';
 import { loadUserFromCache } from '../../../shared/functions/auth';
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
 const styles = theme => ({
     appBar: {
@@ -122,6 +132,10 @@ const styles = theme => ({
 function NavBar(props) {
     const [username, setUsername] = useState(null);
 
+    const tabContext = useContext(TabContext);
+
+    let history = useHistory();
+
     loadUserFromCache()
         .then((data) => {
             setUsername(data.username);
@@ -129,6 +143,11 @@ function NavBar(props) {
         .catch((e) => {
             console.log(e);
         });
+
+    function handleTabClick(path, index) {
+        tabContext.setSelectedValue(index);
+        history.push(path);
+    }
 
     return (
         <Fragment>
@@ -163,6 +182,23 @@ function NavBar(props) {
                         </ListItem>
                     </Box>
                 </Toolbar>
+
+                <SelectedProjectContext.Consumer>
+                    {({ selectedProject, setSelectedProject }) => (
+                        selectedProject &&
+                            <Tabs value={tabContext.value} onChange={null}>
+                                <Tab
+                                    label="Experiments"
+                                    onClick={() => {handleTabClick('/c/projects/' + selectedProject + '/experiments', 0)}}
+                                    {...a11yProps(0)} />
+                                <Tab
+                                    label="Devices"
+                                    onClick={() => {handleTabClick('/c/projects/' + selectedProject + '/devices', 1)}}
+                                    {...a11yProps(1)} />
+                            </Tabs>
+
+                    )}
+                </SelectedProjectContext.Consumer>
             </AppBar>
         </Fragment>
     );

@@ -1,12 +1,13 @@
-import React, { Fragment, PureComponent } from "react";
+import React, { Fragment, useContext } from "react";
 import { Typography, withStyles } from "@material-ui/core";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Auth, Cache } from 'aws-amplify';
 import { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import VergeAIAPI from '../../../shared/API';
 import '../../../config.js';
+import { ProjectListContext, SelectedProjectContext } from '../Contexts';
 import { loadUserFromCache } from '../../../shared/functions/auth';
 
 const styles = theme => ({
@@ -30,8 +31,10 @@ const styles = theme => ({
 function CreateProject(props) {
     const [name, setName] = useState(null);
     const [description, setDescription] = useState(null);
-    const [redirect, setRedirect] = useState(null);
-    const [newProjectId, setNewProjectId] = useState(null);
+
+    const selectedProjectContext = useContext(SelectedProjectContext);
+    const projectListContext = useContext(ProjectListContext);
+    let history = useHistory();
 
     async function createNewProject() {
         const api = new VergeAIAPI(await loadUserFromCache());
@@ -40,17 +43,13 @@ function CreateProject(props) {
                 return response.json();
             })
             .then((data) => {
-                setNewProjectId(data["ID"]);
-                setRedirect(true);
+                projectListContext.addProject(data["name"], data["ID"]);
+                selectedProjectContext.setSelectedProject(data["ID"]);
+                history.push('/c/projects/' + data["ID"] + '/experiments');
             })
             .catch((e) => {
                 console.log(e);
             });
-    }
-
-    // When we create a new project, we want to redirect to the project page
-    if (redirect) {
-        return <Redirect to={'c/projects/' + newProjectId}  />
     }
 
     return (

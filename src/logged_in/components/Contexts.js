@@ -8,3 +8,7 @@ export const SelectedProjectContext = React.createContext({
 export const ProjectListContext = React.createContext({
     projects: {}
 });
+
+export const TabContext = React.createContext({
+    value: 0
+});

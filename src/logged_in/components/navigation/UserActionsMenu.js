@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Auth } from 'aws-amplify';
 import { Typography } from "@material-ui/core";
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { SelectedProjectContext } from '../Contexts';
 
 function UserActionsMenu(props) {
+    const selectedProjectContext = useContext(SelectedProjectContext);
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const links = [
         {
             "key": "Settings",
             "to": "/c/settings",
             "text": "Settings",
-            "onClick": null
+            "onClick": () => { selectedProjectContext.setSelectedProject(""); }
         },
         {
             "key": "Logout",

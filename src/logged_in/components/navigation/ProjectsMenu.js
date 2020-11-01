@@ -142,6 +142,10 @@ function ProjectsMenu(props) {
                 open={Boolean(anchorEl)}
                 onClose={() => { setAnchorEl(null); }}
             >
+                <MenuItem onClick={() => { setAnchorEl(null); setDialogOpen(true); }}>Manage My Projects</MenuItem>
+
+                <Divider />
+
                 <ProjectListContext.Consumer>
                     {({ projects }) => (
                         <SelectedProjectContext.Consumer>
@@ -153,7 +157,7 @@ function ProjectsMenu(props) {
                                         >
                                             <Link
                                               key={value}
-                                              to={"/c/projects/" + projects[value]["id"]}
+                                              to={"/c/projects/" + projects[value]["id"] + "/experiments"}
                                               className={props.classes.linkDecoration}
                                             >
                                                 {projects[value].name}
@@ -165,9 +169,6 @@ function ProjectsMenu(props) {
                         </SelectedProjectContext.Consumer>
                     )}
                 </ProjectListContext.Consumer>
-                <Divider />
-
-                <MenuItem onClick={() => { setAnchorEl(null); setDialogOpen(true); }}>Manage My Projects</MenuItem>
             </Menu>
         </div>
     );

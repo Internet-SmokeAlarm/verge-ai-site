@@ -36,4 +36,19 @@ export default class VergeAIAPI {
             referrerPolicy: 'no-referrer'
         });
     };
+
+    getProject(id) {
+        return fetch(`${global.config.api.baseUrl}/project/get/${this.props.match.params.id}`, {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'omit',
+            headers: {
+                'Authorization': this.jwt,
+                'Content-Type': 'application/json',
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer'
+        })
+    }
 }

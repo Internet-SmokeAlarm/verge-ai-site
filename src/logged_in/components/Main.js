@@ -7,7 +7,7 @@ import Routing from "./Routing";
 import NavBar from "./navigation/NavBar";
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import { useState } from "react";
-import { SelectedProjectContext, ProjectListContext } from './Contexts';
+import { SelectedProjectContext, ProjectListContext, TabContext } from './Contexts';
 import VergeAIAPI from '../../shared/API';
 
 const styles = theme => ({
@@ -32,16 +32,37 @@ class Main extends PureComponent {
         this.setState({ selectedProjectState: selectedProjectState });
     }
 
+    setSelectedValue = (value) => {
+        var tabContextState = {...this.state.tabContextState};
+        tabContextState.value = value;
+        this.setState({ tabContextState: tabContextState });
+    }
+
+    addProject = (project_name, project_id) => {
+        var projectListState = {...this.state.projectListState};
+        projectListState.projects.push({
+            "name": project_name,
+            "id": project_id
+        });
+        this.setState({ projectListState: projectListState })
+    }
+
     state = {
         user: null,
 
         projectListState: {
-            projects: []
+            projects: [],
+            addProject: this.addProject
         },
 
         selectedProjectState: {
             selectedProject: "",
             setSelectedProject: this.setSelectedProject
+        },
+
+        tabContextState: {
+            value: 0,
+            setSelectedValue: this.setSelectedValue
         }
     }
 
@@ -75,6 +96,10 @@ class Main extends PureComponent {
         if (window.location.href.split("/")[3] === "c" && window.location.href.split("/")[4] === "projects") {
             this.setSelectedProject(window.location.href.split("/")[5]);
         }
+
+        if (window.location.href.includes("devices")) {
+            this.setSelectedValue(1);
+        }
     }
 
     render() {
@@ -83,7 +108,9 @@ class Main extends PureComponent {
             <Fragment>
                 <ProjectListContext.Provider value={this.state.projectListState}>
                     <SelectedProjectContext.Provider value={this.state.selectedProjectState}>
-                        <NavBar />
+                        <TabContext.Provider value={this.state.tabContextState}>
+                            <NavBar />
+                        </TabContext.Provider>
 
                         <main className={classNames(classes.main)}>
                             <Routing />

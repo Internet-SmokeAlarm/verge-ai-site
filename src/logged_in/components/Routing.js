@@ -5,8 +5,8 @@ import { withStyles } from "@material-ui/core";
 import Settings from "./settings/Settings";
 import PropsRoute from "../../shared/components/PropsRoute";
 import CreateProject from "./create_project/CreateProject";
-import Project from './project/Project';
-
+import Experiments from './project/Experiments';
+import Devices from './project/Devices';
 
 const styles = theme => ({
     wrapper: {
@@ -60,8 +60,12 @@ function Routing(props) {
                     component={CreateProject}
                 />
                 <PropsRoute
-                    path="/c/projects/:id"
-                    component={Project}
+                    path="/c/projects/:id/experiments"
+                    component={Experiments}
+                />
+                <PropsRoute
+                    path="/c/projects/:id/devices"
+                    component={Devices}
                 />
             </Switch>
         </div>
