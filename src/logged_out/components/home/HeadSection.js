@@ -8,7 +8,6 @@ import {
   withWidth,
   isWidthUp
 } from "@material-ui/core";
-import Image from "../../../shared/imgs/Union.png";
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
@@ -69,13 +68,6 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
     paddingBottom: theme.spacing(2)
   },
-  backgroundImageWrapper: {
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: "right",
-      [theme.breakpoints.up("lg")]: {
-        backgroundImage: `url(${Image})`,
-      }
-  },
   image: {
     maxWidth: "80%",
     verticalAlign: "middle",
@@ -121,7 +113,7 @@ function HeadSection(props) {
   const { classes, theme, width } = props;
   return (
     <Fragment>
-      <div className={classNames("lg-p-top", classes.wrapper, classes.backgroundImageWrapper)} style={{ backgroundColor: "#05173E" }}>
+      <div className={classNames("lg-p-top", classes.wrapper)} style={{ backgroundColor: "#05173E" }}>
         <div className={classNames("container-fluid", classes.container)}>
           <Box display="flex" justifyContent="left" className="row">
             <div

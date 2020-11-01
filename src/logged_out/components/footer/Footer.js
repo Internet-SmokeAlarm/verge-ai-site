@@ -96,19 +96,19 @@ const socialIcons = [
 function Footer(props) {
   const { classes, theme, width } = props;
   return (
-    <footer className="lg-p-top">
+    <footer >
       <div className={classes.footerInner}>
         <Grid container spacing={isWidthUp("md", width) ? 10 : 5}>
-          <Grid item xs={12} md={8} lg={5}>
+          <Grid item xs={12} md={8} lg={6}>
             <Typography variant="h6" paragraph className="text-white">
               About Verge AI
             </Typography>
             <Typography style={{ color: "#8f9296" }} paragraph>
               We are an early-stage startup building distributed
-              machine learning technologies for all.
+              machine learning technologies.
             </Typography>
           </Grid>
-          <Grid item xs={12} md={4} lg={7}>
+          <Grid item xs={12} md={4} lg={6}>
             <Box vertical-align="middle">
               {socialIcons.map((socialIcon, index) => (
                 <Box key={index} align="right" vertical-align="middle">

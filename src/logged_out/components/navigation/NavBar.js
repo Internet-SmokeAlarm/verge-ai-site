@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import CardMedia from '@material-ui/core/CardMedia';
@@ -12,7 +12,9 @@ import {
   withStyles
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import HomeIcon from "@material-ui/icons/Home";
+import HelpIcon from '@material-ui/icons/Help';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import InfoIcon from '@material-ui/icons/Info';
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 import Image from "../../../shared/imgs/logo.png";
@@ -44,7 +46,7 @@ const styles = theme => ({
     width: "12%",
     height: "12%",
     marginRight: theme.spacing(1)
-  },
+  }
 });
 
 function NavBar(props) {
@@ -57,10 +59,22 @@ function NavBar(props) {
   } = props;
   const menuItems = [
     {
+      name: "Pricing",
+      link: "/pricing",
+      isExternal: false,
+      icon: <MonetizationOnIcon className="text-white" />
+    },
+    {
+      name: "About",
+      link: "/about",
+      isExternal: false,
+      icon: <InfoIcon className="text-white" />
+    },
+    {
       link: "https://internet-smokealarm.github.io/documentation",
       isExternal: true,
       name: "Docs",
-      icon: <HomeIcon className="text-white" />
+      icon: <HelpIcon className="text-white" />
     },
     {
       name: "Sign in",
@@ -70,7 +84,7 @@ function NavBar(props) {
     }
   ];
   return (
-    <div className={classes.root}>
+    <Fragment>
       <AppBar position="relative" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
             <div style={{
@@ -170,7 +184,7 @@ function NavBar(props) {
         selectedItem={selectedTab}
         onClose={handleMobileDrawerClose}
       />
-    </div>
+    </Fragment>
   );
 }
 

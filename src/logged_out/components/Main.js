@@ -8,7 +8,6 @@ import "aos/dist/aos.css";
 import CookieRulesDialog from "./cookies/CookieRulesDialog";
 import CookieConsent from "./cookies/CookieConsent";
 import Routing from "./Routing";
-import smoothScrollTop from "../../shared/functions/smoothScrollTop";
 
 AOS.init({ once: true });
 
@@ -21,17 +20,9 @@ const styles = theme => ({
 
 class Main extends PureComponent {
   state = {
-    selectedTab: null,
     mobileDrawerOpen: false,
     dialogOpen: null,
     cookieRulesDialogOpen: false
-  };
-
-  selectHome = () => {
-    smoothScrollTop();
-    document.title =
-      "Verge AI";
-    this.setState({ selectedTab: "Home" });
   };
 
   closeDialog = () => {
@@ -46,10 +37,6 @@ class Main extends PureComponent {
     this.setState({ mobileDrawerOpen: false });
   };
 
-  switchSelectedTab = tab => {
-    this.setState({ selectedTab: tab });
-  };
-
   handleCookieRulesDialogOpen = () => {
     this.setState({ cookieRulesDialogOpen: true });
   };
@@ -61,7 +48,6 @@ class Main extends PureComponent {
   render() {
     const { classes } = this.props;
     const {
-      selectedTab,
       mobileDrawerOpen,
       dialogOpen,
       cookieRulesDialogOpen
@@ -78,15 +64,11 @@ class Main extends PureComponent {
           onClose={this.handleCookieRulesDialogClose}
         />
         <NavBar
-          selectedTab={selectedTab}
-          selectTab={this.selectTab}
           mobileDrawerOpen={mobileDrawerOpen}
           handleMobileDrawerOpen={this.handleMobileDrawerOpen}
           handleMobileDrawerClose={this.handleMobileDrawerClose}
         />
-        <Routing
-          selectHome={this.selectHome}
-        />
+        <Routing />
         <Footer />
       </div>
     );

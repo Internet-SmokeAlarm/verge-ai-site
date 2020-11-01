@@ -1,87 +1,84 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Grid, Typography, isWidthUp, withWidth } from "@material-ui/core";
-import CodeIcon from "@material-ui/icons/Code";
+import React, { Fragment } from "react";
+import Box from '@material-ui/core/Box';
+import { Grid, Typography, withStyles } from "@material-ui/core";
 import LayersIcon from "@material-ui/icons/Layers";
 import BuildIcon from "@material-ui/icons/Build";
-import BarChartIcon from "@material-ui/icons/BarChart";
-import HeadsetMicIcon from "@material-ui/icons/HeadsetMic";
 import TuneIcon from "@material-ui/icons/Tune";
-import CloudIcon from "@material-ui/icons/Cloud";
 import PeopleIcon from "@material-ui/icons/People";
-import CancelIcon from "@material-ui/icons/Cancel";
-import calculateSpacing from "./calculateSpacing";
-import FeatureCard from "./FeatureCard";
 
-const iconSize = 60;
+const iconSize = 300;
+
+const WhiteTextTypography = withStyles({
+  root: {
+    color: "#FFFFFF"
+  }
+})(Typography);
 
 const features = [
   {
     color: "#36B59D",
-    headline: "Scalability",
+    headline: "Scalable",
     text:
       "Tackle challenges of the greatest size and complexity.",
-    icon: <LayersIcon style={{ fontSize: iconSize }} />,
+    icon: <LayersIcon style={{ fontSize: iconSize, color: "#36B59D" }} />,
   },
   {
     color: "#6247EB",
-    headline: "Flexibility",
+    headline: "Flexible",
     text:
-      "Choose how you want to compose your infrastructure at the edge.",
-    icon: <TuneIcon style={{ fontSize: iconSize }} />,
+      "Choose how you compose your infrastructure.",
+    icon: <TuneIcon style={{ fontSize: iconSize, color: "#6247EB" }} />,
   },
   {
     color: "#36B4E9",
-    headline: "Collaboration",
+    headline: "At the edge, and the data center",
     text:
-      "Build and train together across teams of any size.",
-    icon: <PeopleIcon style={{ fontSize: iconSize }} />,
+      "Run ML across clouds, technology stacks, and training location.",
+    icon: <PeopleIcon style={{ fontSize: iconSize, color: "#36B4E9" }} />,
   },
   {
     color: "#2B54AC",
-    headline: "Fully managed",
+    headline: "Enterprise Ready",
     text:
       "Robust to failure with leading service up-time.",
-    icon: <BuildIcon style={{ fontSize: iconSize }} />,
+    icon: <BuildIcon style={{ fontSize: iconSize, color: "#2B54AC" }} />,
   }
 ];
 
 function FeatureSection(props) {
-  const { width } = props;
-  return (
-    <div style={{ backgroundColor: "#FFFFFF" }}>
-      <div className="container-fluid lg-p-top">
-        <div className="container-fluid">
-          <Grid container spacing={calculateSpacing(width)}>
-            {features.map(element => (
-              <Grid
-                item
-                xs={12}
-                md={3}
-                data-aos="zoom-in-up"
-                data-aos-delay={
-                  isWidthUp("md", width) ? element.mdDelay : element.smDelay
-                }
-                key={element.headline}
-                align="center"
-              >
-                <FeatureCard
-                  Icon={element.icon}
-                  color={element.color}
-                  headline={element.headline}
-                  text={element.text}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </div>
-      </div>
-    </div>
-  );
+    const { width } = props;
+    return (
+        <Fragment>
+            <div style={{ backgroundColor: "#05173E" }}>
+                {features.map(element => (
+                    <Grid container spacing={3} direction="row" align="center" alignItems="center">
+                        <Grid item xs={6}>
+                            {element.icon}
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Box mb={5} align="left">
+                                <WhiteTextTypography
+                                    variant="h3"
+                                >
+                                    {element.headline}
+                                </WhiteTextTypography>
+                            </Box>
+
+                            <Box align="left">
+                                <WhiteTextTypography
+                                    variant="h5"
+                                >
+                                    {element.text}
+                                </WhiteTextTypography>
+                            </Box>
+                        </Grid>
+                    </Grid>
+                ))}
+
+                <Box pb={10} />
+            </div>
+        </Fragment>
+    );
 }
 
-FeatureSection.propTypes = {
-  width: PropTypes.string.isRequired
-};
-
-export default withWidth()(FeatureSection);
+export default FeatureSection;
