@@ -10,7 +10,7 @@ export async function getUser() {
 export async function loadUserFromCache() {
     let user = await Cache.getItem(global.config.userCacheKey);
 
-    if (Object.keys(user).length === 0) {
+    if (!user || Object.keys(user).length === 0) {
         user = getUser();
         await Cache.setItem(global.config.userCacheKey, user);
     }
