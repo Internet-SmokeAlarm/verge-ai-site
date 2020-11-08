@@ -2,7 +2,10 @@ import React from "react";
 
 export const SelectedProjectContext = React.createContext({
     selectedProject: "",
-    setSelectedProject: () => {}
+    setSelectedProject: () => {},
+
+    project: {},
+    setProject: () => {}
 });
 
 export const ProjectListContext = React.createContext({

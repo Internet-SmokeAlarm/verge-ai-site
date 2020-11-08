@@ -26,9 +26,15 @@ const styles = theme => ({
 
 class Main extends PureComponent {
 
-    setSelectedProject = (id) => {
+    setSelectedProjectId = (id) => {
         var selectedProjectState = {...this.state.selectedProjectState};
         selectedProjectState.selectedProject = id;
+        this.setState({ selectedProjectState: selectedProjectState });
+    }
+
+    setSelectedProjectProject = (project) => {
+        var selectedProjectState = {...this.state.selectedProjectState};
+        selectedProjectState.project = project;
         this.setState({ selectedProjectState: selectedProjectState });
     }
 
@@ -57,7 +63,10 @@ class Main extends PureComponent {
 
         selectedProjectState: {
             selectedProject: "",
-            setSelectedProject: this.setSelectedProject
+            setSelectedProject: this.setSelectedProjectId,
+
+            project: {},
+            setProject: this.setSelectedProjectProject
         },
 
         tabContextState: {
@@ -94,7 +103,8 @@ class Main extends PureComponent {
 
         // If we are on a project page, we want to load the project information at start
         if (window.location.href.split("/")[3] === "c" && window.location.href.split("/")[4] === "projects") {
-            this.setSelectedProject(window.location.href.split("/")[5]);
+            this.setSelectedProjectId(window.location.href.split("/")[5]);
+            this.setSelectedProjectProject({});
         }
 
         if (window.location.href.includes("devices")) {

@@ -35,10 +35,26 @@ export default class VergeAIAPI {
             redirect: 'follow',
             referrerPolicy: 'no-referrer'
         });
-    };
+    }
+
+    createExperiment(name, project_id) {
+        return fetch(`${global.config.api.baseUrl}/experiment/create`, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'omit',
+            headers: {
+                'Authorization': this.jwt,
+                'Content-Type': 'application/json',
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify({"project_id": project_id, "experiment_name": name})
+        });
+    }
 
     getProject(id) {
-        return fetch(`${global.config.api.baseUrl}/project/get/${this.props.match.params.id}`, {
+        return fetch(`${global.config.api.baseUrl}/project/get/${id}`, {
             method: 'GET',
             mode: 'cors',
             cache: 'no-cache',
@@ -49,6 +65,6 @@ export default class VergeAIAPI {
             },
             redirect: 'follow',
             referrerPolicy: 'no-referrer'
-        })
+        });
     }
 }
