@@ -89,9 +89,9 @@ class Main extends PureComponent {
                 return response.json();
             })
             .then((data) => {
-                var projectListState = {...this.state.projectListState};
-                projectListState.projects = data["projects"];
-                this.setState({ projectListState: projectListState });
+                for (const [id, project] of Object.entries(data.projects)) {
+                    this.addProject(project["name"], project["id"]);
+                }
             })
             .catch((e) => {
                 console.log(e);

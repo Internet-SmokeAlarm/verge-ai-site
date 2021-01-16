@@ -3,24 +3,24 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
-import Divider from '@material-ui/core/Divider';
 import Select from '@material-ui/core/Select';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import { Typography } from "@material-ui/core";
+import { loadUserFromCache } from '../../../shared/functions/auth';
+import { loadProjectInformation } from '../../../shared/functions/api';
+import VergeAIAPI from '../../../shared/API';
+import { SelectedProjectContext } from '../Contexts';
 
 export default function CreateJobs(props) {
+    const [waiting, setWaiting] = useState(false);
     const [numDevices, setNumDevices] = useState(0);
     const [numBackupDevices, setNumBackupDevices] = useState(0);
     const [numJobs, setNumJobs] = useState(1);
@@ -46,7 +46,9 @@ export default function CreateJobs(props) {
         let newTerminationCriteria = terminationCriteria.slice();
         newTerminationCriteria.push({
             "type": "TIMEOUT",
-            "data": {}
+            "data": {
+                "TIMEOUT": "2"
+            }
         });
 
         setTerminationCriteria(newTerminationCriteria);
@@ -59,7 +61,27 @@ export default function CreateJobs(props) {
         setTerminationCriteria(newTerminationCriteria);
     }
 
-    console.log(terminationCriteria);
+    async function submit() {
+        const experimentId = "1";
+        const projectId = props.selectedProjectContext.selectedProject;
+
+        setWaiting(true);
+
+        const api = new VergeAIAPI(await loadUserFromCache());
+        api.createJob(projectId, experimentId, numDevices, numBackupDevices, numJobs, deviceSelectionStrategy, terminationCriteria)
+            .then((response) => {
+                console.log(response.status);
+                return response.json();
+            })
+            .then((data) => {
+                setWaiting(false);
+                loadProjectInformation(props.selectedProjectContext, true);
+            })
+            .catch((e) => {
+                console.log(e.status);
+                console.log(e);
+            });
+    }
 
     return (
         <Dialog
@@ -123,7 +145,6 @@ export default function CreateJobs(props) {
                                 onChange={(event) => {setDeviceSelectionStrategy(event.target.value);}}
                             >
                                 <MenuItem value={"RANDOM"}>Random</MenuItem>
-                                <MenuItem value={"CUSTOM"}>Custom</MenuItem>
                             </Select>
                         </Grid>
 
@@ -164,6 +185,7 @@ export default function CreateJobs(props) {
                                                     <TextField
                                                         label="Num Hours"
                                                         variant="outlined"
+                                                        defaultValue={value.data.TIMEOUT}
                                                         onChange={(event) => {updateTerminationCriteriaData("TIMEOUT", event.target.value, index);}}
                                                     />
                                                 </Grid>
@@ -192,7 +214,7 @@ export default function CreateJobs(props) {
                 <Button onClick={() => {props.setJobDialogOpen(false)}} color="primary">
                     Close
                 </Button>
-                <Button onClick={() => {props.setJobDialogOpen(false)}} color="primary">
+                <Button onClick={() => {props.setJobDialogOpen(false); submit()}} color="primary">
                     Submit
                 </Button>
             </DialogActions>

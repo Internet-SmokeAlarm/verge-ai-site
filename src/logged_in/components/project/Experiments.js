@@ -56,6 +56,17 @@ function Experiments(props) {
     let experimentCards = [];
     if (Object.keys(project).length != 0) {
         Object.keys(project.experiments).map((value, index) => {
+            const job_info = [];
+            for (const [expJobKey, expJobValue] of Object.entries(project.experiments[value].jobs)) {
+                job_info.push((<TableRow key={expJobValue.ID}>
+                    <TableCell></TableCell>
+                    <TableCell>{expJobValue.ID}</TableCell>
+                    <TableCell>{expJobValue.ID}</TableCell>
+                    <TableCell>{expJobValue.ID}</TableCell>
+                    <TableCell>{expJobValue.ID}</TableCell>
+                </TableRow>));
+            }
+
             experimentCards.push(<Grid item xs={12}>
                 <Accordion>
                     <AccordionSummary
@@ -64,28 +75,20 @@ function Experiments(props) {
                         id="panel1c-header"
                     >
                         <Typography>
-                            {value}
+                            {project.experiments[value].name}
                         </Typography>
                     </AccordionSummary>
 
                     <AccordionDetails>
                         <Grid container>
                             <Grid container spacing={0}>
-                                <Grid container xs={3} direction="column">
+                                <Grid container xs={8} direction="column">
                                     <Typography>
-                                        Status
+                                        Description
                                     </Typography>
-                                    {project.experiments[value].is_active ? (
-                                        <OrangeTextTypography>
-                                            In Progress
-                                        </OrangeTextTypography>
-                                    ) : (
-                                        <GreenTextTypography>
-                                            Completed
-                                        </GreenTextTypography>
-                                    )}
+                                    {project.experiments[value].description}
                                 </Grid>
-                                <Grid container xs={5} direction="column">
+                                <Grid container xs={2} direction="column">
                                     <Typography>
                                         ID
                                     </Typography>
@@ -93,7 +96,7 @@ function Experiments(props) {
                                         {value}
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={4} align="right">
+                                <Grid item xs={2} align="right">
                                     <Button
                                         variant="outlined"
                                         color="primary"
@@ -120,15 +123,7 @@ function Experiments(props) {
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
-                                                {project.experiments[value].jobs.map((row) => (
-                                                    <TableRow key={row.name}>
-                                                        <TableCell></TableCell>
-                                                        <TableCell>{row.calories}</TableCell>
-                                                        <TableCell>{row.fat}</TableCell>
-                                                        <TableCell>{row.carbs}</TableCell>
-                                                        <TableCell>{row.protein}</TableCell>
-                                                    </TableRow>
-                                                ))}
+                                                {job_info}
                                             </TableBody>
                                         </Table>
                                     </TableContainer>
@@ -146,8 +141,6 @@ function Experiments(props) {
             </Grid>);
         });
     }
-    console.log(project);
-    console.log(experimentCards);
 
     return (
         <Fragment>
@@ -172,7 +165,8 @@ function Experiments(props) {
 
                 <CreateJobs
                     jobDialogOpen={jobDialogOpen}
-                    setJobDialogOpen={setJobDialogOpen} />
+                    setJobDialogOpen={setJobDialogOpen}
+                    selectedProjectContext={selectedProjectContext} />
             </div>
         </Fragment>
     );

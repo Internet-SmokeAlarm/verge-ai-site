@@ -14,6 +14,8 @@ const styles = theme => ({
 });
 
 function Devices(props) {
+    const [deviceDialogOpen, setDeviceDialogOpen] = useState(false);
+
     return (
         <Fragment>
                 <div className={props.root}>
@@ -29,6 +31,10 @@ function Devices(props) {
                             </Grid>
                         </Grid>
                     </div>
+
+                    <CreateDevice
+                        deviceDialogOpen={deviceDialogOpen}
+                        setDeviceDialogOpen={setDeviceDialogOpen} />
                 </div>
         </Fragment>
     );
